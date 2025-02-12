@@ -181,7 +181,7 @@ def pointBuyStats(basePoints, pointsPool, min=0, max=None):
         print(f'\n[{pool}] point remaining\n')
         while True:
             if pool == 0:
-                endPB = readCommands(input('Are you finnished? >> '), ['yes', 'no'])
+                endPB = readCommands(input('Are you finished? [yes/no] >> '), ['yes', 'no'])
                 if endPB[0] == 'yes':
                     cont = False
                     break
@@ -190,7 +190,7 @@ def pointBuyStats(basePoints, pointsPool, min=0, max=None):
                 for s in playerStats:
                     acceptedResponces[0][1].append(s)
                     acceptedResponces[1][1].append(s)
-                pInput = readCommands(input(' >> '), acceptedResponces)
+                pInput = readCommands(input(' [add/remove] >> '), acceptedResponces)
                 if pInput != 'notFound': break
             if pInput[0] == 'add' and pool > 0:
                 if max != None:
@@ -215,7 +215,7 @@ map = []
 playerStats = {
     'strength' : 0,
     'dexterity' : 0,
-    'inteligence' : 0,
+    'intelligence' : 0,
     'magic' : 0
 }
 
@@ -255,7 +255,7 @@ while True:
 
     #get player input
     while True:
-        pInput = readCommands(input('  >>'), [['explore', ['north','east','south','west']], 'terminate'])
+        pInput = readCommands(input(' [explore N/E/S/W] >>'), [['explore', ['north','east','south','west']], 'terminate'])
         if pInput[0] == 'explore':
             print('You chose to explore!!!')
             if map[playerCurrent[0]][playerCurrent[1]][pInput[1]] == 'passageWay':
