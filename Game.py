@@ -194,7 +194,7 @@ def pointBuyStats(basePoints, pointsPool, min=0, max=None):
                 if pInput != 'notFound': break
             if pInput[0] == 'add' and pool > 0:
                 if max != None:
-                    if playerStats[1] < max:
+                    if playerStats[pInput[1]] < max:
                         playerStats[pInput[1]] += 1
                         pool -= 1
                     else: print(f'Points can not be above {max}')
@@ -209,7 +209,23 @@ def pointBuyStats(basePoints, pointsPool, min=0, max=None):
             else: print(f'Points can not be below {min}')
             break
 
-      
+#simulate dice roll
+def dieRoll(qDice, diceValue=6, doDisplayGraphic=True):
+    results = []
+    for d in range(qDice):
+        results.append(rd.randrange(1,diceValue+1))
+    if doDisplayGraphic:
+        display = ''
+        for layer in range(3):
+            for i in results:
+                if layer == 0: display += '\u250F\u2501\u2501\u2501\u2513 '
+                elif layer == 1: display += f'\u2503 {i} \u2503 '
+                else: display += '\u2517\u2501\u2501\u2501\u251B '
+            display += '\n'
+        print(display)
+    return results
+
+
 map = []
 
 playerStats = {
@@ -218,6 +234,14 @@ playerStats = {
     'intelligence' : 0,
     'magic' : 0
 }
+
+xp = 0
+
+maxHP = 0
+
+currentHP = 0
+
+inventory = []
 
 playerCurrent = []
 
@@ -240,7 +264,10 @@ weights = [1,10,3]
 
 gameInit()
 
-pointBuyStats(8, 1, min=4)
+pointBuyStats(8, 1, min=5, max=12)
+
+maxHP = playerStats['strength'] + sum(dieRoll(playerStats['strength']//2))
+print(f'Your max HP is {maxHP}')
 
 terminate = False
 
