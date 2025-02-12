@@ -1,3 +1,4 @@
 item,displayName,stat,hitValue,damage
 shortsword,"Short Sword","strength",30,2
 crossbow,"Crossbow","dexterity",35,3
+longsword,"Long Sword","sterngth", 45,4
